@@ -142,7 +142,8 @@ function handleGetByIdSubmit(e) {
               <p>Title: {book.title}</p>
               <p>ISBN: {book.isbn}</p>
               <p>Stock: {book.stock}</p>
-              <p>Author ID: {book.author_id}</p>
+              <p>Author name : {book.author?.name}</p>
+              <p>Author nationality: {book.author?.nationality}</p>
             </div>
           </div>)}
        
@@ -165,6 +166,8 @@ function handleGetByIdSubmit(e) {
               book title:{book.title},
               book stock_number:{book.stock},
               book isbn:{book.isbn}  
+              book author_name:{book.author?.name},
+              book author_nationality:{book.author?.nationality},
             </li>
           ))}
         </ul>

@@ -1,62 +1,64 @@
 import axios from 'axios';
 import { useEffect,useState } from 'react';
 
-function Student() {
-  const [students, setStudents] = useState([]);
-  const [student, setStudent] = useState(null);
+function Author() {
+  const [authors, setAuthors] = useState([]);
+  const [author, setAuthor] = useState(null);
   const [showall,setshowall]= useState(false);
   const [formdata,setformdata]=useState({
     name: '',
-    email: '',
-});
+    nationality: '',
+    
+  });
     const [formdataid,setformdataid]=useState({
     id: '',
     name: '',
-    email: '',
-});
+    nationality: '',
+   
+  });
   const [del_id,setdel_id]=useState(' ');
   const [get_id,setget_id]=useState(' ');
-  const fetchData=()=>{axios.get('/api/student')
-      .then(res => setStudents(res.data))
+  const fetchData=()=>{axios.get('/api/author')
+      .then(res => setAuthors(res.data))
       .catch(err => console.error(err));
   }
   useEffect(() => {
     fetchData();
   }, []);
-  const handleAddStudent = (student) => {
-    axios.post('/api/student', student)
+  const handleAddAuthor = (author) => {
+    axios.post('/api/author', author)
       .then(() => fetchData())
       .catch(err => console.error(err));
   };
-  const handleDeleteStudent = (id) => {
-    axios.delete(`/api/student/${id}`)
+  const handleDeleteAuthor = (id) => {
+    axios.delete(`/api/author/${id}`)
       .then(() => fetchData())
       .catch(err => console.error(err));
   };
-  const handleUpdateStudent = (id, updatedStudent) => {
-    axios.put(`/api/student/${id}`, updatedStudent)
+  const handleUpdateAuthor= (id, updatedAuthor) => {
+    axios.put(`/api/author/${id}`, updatedAuthor)
       .then(() => fetchData())
       .catch(err => console.error(err));
   };
   const handleGetById = (id)=>{
-    axios.get(`/api/student/${id}`)
-      .then(res => setStudent(res.data))
+    axios.get(`/api/author/${id}`)
+      .then(res => setAuthor(res.data))
       .catch(err => console.error(err));
   }
  
 function handleSubmit(e) {
     e.preventDefault();
-    handleAddStudent(formdata);
-    setformdata({ name: '', email: '' });
+    handleAddAuthor(formdata);
+    setformdata({ name: '', nationality: '' });
     }
 function handleSubmitupdate(e) {
     e.preventDefault();
-    handleUpdateStudent(formdataid.id, formdataid);
-    setformdataid({ id:' ',name: '', email: '' });
+    handleUpdateAuthor(formdataid.id, formdataid);
+    setformdataid({ id:' ',name: '', nationality: ''});
     }
 function handleSubmitdelete(e) {
     e.preventDefault();
-    handleDeleteStudent(del_id);
+    handleDeleteAuthor(del_id);
     setdel_id('');
 }
 
@@ -64,7 +66,7 @@ function handleGetByIdSubmit(e) {
     e.preventDefault();
     handleGetById(get_id);
     setget_id('');
-    setStudent(null); 
+    setAuthor(null); 
 }
   return (
     <div>
@@ -74,19 +76,20 @@ function handleGetByIdSubmit(e) {
         value={showall}
         onChange={(e) => setshowall(e.target.checked)}
       />
-      {showall ? 'Hide Students' : 'Show Students'}
-      <GetAllStudents students={students}  showall={showall} />
+      {showall ? 'Hide Authors' : 'Show Authors'}
+      <GetAllAuthors authors={authors}  showall={showall} />
       </label>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Name" name="name" value={formdata.name} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           name: e.target.value
         }))}} />
-        <input type="text" placeholder="email" name='email' value={formdata.email} onChange={(e)=>{setformdata(prev=>({
+        <input type="text" placeholder="nationality" name='nationality' value={formdata.nationality} onChange={(e)=>{setformdata(prev=>({
           ...prev,
-          email: e.target.value
+          nationality: e.target.value
         }))}}/>
-        <button type="submit">Add Student</button>
+        
+        <button type="submit">Add Author</button>
         
       </form>
       <form onSubmit={handleSubmitupdate}>
@@ -98,29 +101,29 @@ function handleGetByIdSubmit(e) {
           ...prev,
           name: e.target.value
         }))}} />
-        <input type="text" placeholder="email" name='email' value={formdataid.email} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="nationality" name='nationality' value={formdataid.nationality} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
-          email: e.target.value
+          nationality: e.target.value
         }))}}/>
-       <button type="submit">Update Student</button>
+        <button type="submit">Update Author</button>
         
       </form>
       <form onSubmit={handleSubmitdelete}>
-        <input type="text" placeholder="Id"  value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
-        <button type="submit">Delete Student</button> 
+        <input type="text" placeholder="Id"  name="id" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
+        <button type="submit">Delete Author</button> 
       </form>
       <form onSubmit={handleGetByIdSubmit}>
-        <input type="text" placeholder="Id"  value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
-        <button type="submit">Get this Student</button>
+        <input type="text" placeholder="Id" name='id' value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
+        <button type="submit">Get this Author</button>
         
 
-        {student&&( 
+        {author&&( 
         <div>
-          <h2>Student Details</h2>
+          <h2>Author Details</h2>
           
             <div>
-              <p>Name: {student.name}</p>
-              <p>email: {student.email}</p>
+              <p>Name: {author.name}</p>
+              <p>Nationality: {author.nationality}</p>
             </div>
           </div>)}
        
@@ -131,22 +134,22 @@ function handleGetByIdSubmit(e) {
     </div>
   );
 }
- function GetAllStudents({students,showall}) {
+ function GetAllAuthors({authors,showall}) {
     return (
       showall &&(
       <div>
         
-        <h1>Students</h1>
+        <h1>Authors</h1>
         <ul>
-          {students.map(student => (
-            <li key={student.id}>
-              student name:{student.name},
-              student email:{student.email},
+          {authors.map(author => (
+            <li key={author.id}>
+              author name:{author.name},
+              author nationality:{author.nationality},
+               
             </li>
           ))}
         </ul>
       </div>)
   );
 }
-export default Student;
-
+export default Author;
