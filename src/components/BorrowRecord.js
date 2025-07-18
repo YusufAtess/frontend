@@ -3,8 +3,12 @@ import { useEffect,useState } from 'react';
 
 function BorrowRecord() {
   const [borrowrecords, setBorrowRecords] = useState([]);
+  const [overdueborrowrecords, setoverdueborrowRecords] = useState([]);
   const [borrowrecord, setBorrowRecord] = useState(null);
   const [showall,setshowall]= useState(false);
+  const [showoverdue,setshowoverdue]= useState(false);
+  const [numOfMostBorrowedBooks, setNumOfMostBorrowedBooks] = useState(0);
+  const [mostborrowedbooks, setmostborrowedbooks] = useState([]);
   const [formdata,setformdata]=useState({
     book_id: '',
     student_id: '',
@@ -49,7 +53,12 @@ function BorrowRecord() {
       .then(res => setBorrowRecord(res.data))
       .catch(err => console.error(err));
   }
- 
+  const handleGetOverdueBorrowRecords = (e) => {
+    axios.get('/api/borrowrecord/overdue')
+      .then(res => setoverdueborrowRecords(res.data))
+      .catch(err => console.error(err));
+      setshowoverdue(e.target.checked);
+  };
 function handleSubmit(e) {
     e.preventDefault();
     handleAddBorrowRecord(formdata);
@@ -72,6 +81,15 @@ function handleGetByIdSubmit(e) {
     setget_id('');
     setBorrowRecord(null); 
 }
+function handleMostBorrowedBooks(e) {
+    e.preventDefault();
+    axios.get(`/api/borrowrecord/mostborrowed/${numOfMostBorrowedBooks}`)
+      .then(res => {setmostborrowedbooks(res.data); })
+      .catch(err => console.error(err));
+    
+    setNumOfMostBorrowedBooks(0);
+}
+
   return (
     <div>
       <label>
@@ -82,6 +100,15 @@ function handleGetByIdSubmit(e) {
       />
       {showall ? 'Hide BorrowRecords' : 'Show BorrowRecords'}
       <GetAllBorrowRecords borrowrecords={borrowrecords}  showall={showall} />
+      </label>
+       <label>
+      <input
+        type="checkbox"
+        value={showoverdue}
+        onChange={(e) => handleGetOverdueBorrowRecords(e)}
+      />
+      {showoverdue ? 'Hide  overdue BorrowRecords' : 'Show  overdue BorrowRecords'}
+      <GetOverDueBorrowRecords overdueborrowrecords={overdueborrowrecords}  showoverdue={showoverdue} />
       </label>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Book_id" name="book_id" value={formdata.book_id} onChange={(e)=>{setformdata(prev=>({
@@ -100,10 +127,30 @@ function handleGetByIdSubmit(e) {
           ...prev,
           returnDate: e.target.value
         }))}} />
-        
         <button type="submit">Add BorrowRecord</button>
+       </form> 
         
+      <form onSubmit={handleMostBorrowedBooks}>
+        <input type="number" placeholder="number"  value={numOfMostBorrowedBooks} onChange={(e)=>{setNumOfMostBorrowedBooks(e.target.value)}} />
+      <button type="submit">Get Most Borrowed Books</button>
+        
+        <div>
+          <ol>
+          {mostborrowedbooks.map(borrowedbook => (
+            <li key={borrowedbook.id}>
+             <p>Book title: {borrowedbook.title}</p>
+              <p>Book isbn: {borrowedbook.isbn}</p>
+              <p>Book stock: {borrowedbook.stock}</p>
+              <p>Book number of borrowed: {borrowedbook.num}</p>   
+              <p>Book author name: {borrowedbook.author?.name}</p> 
+              <p>Book author nationality: {borrowedbook.author?.nationality}</p>
+            </li>
+          ))}
+        </ol>
+          </div>
       </form>
+        
+      
       <form onSubmit={handleSubmitupdate}>
         <input type="text" placeholder="Id" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
@@ -185,4 +232,27 @@ function handleGetByIdSubmit(e) {
       </div>)
   );
 }
+function GetOverDueBorrowRecords({overdueborrowrecords,showoverdue}) {
+    return (
+      showoverdue &&(
+      <div>
+        
+        <h1>Overdue BorrowRecords</h1>
+        <ul>
+          {overdueborrowrecords.map(borrowrecord => (
+            <li key={borrowrecord.id}>
+             <p>Book title: {borrowrecord.book?.title}</p>
+              <p>Book isbn: {borrowrecord.book?.isbn}</p>
+              <p>Book stock: {borrowrecord.book?.stock}</p>   
+              <p>Book author name: {borrowrecord.book?.author?.name}</p> 
+              <p>Book author nationality: {borrowrecord.book?.author?.nationality}</p>
+              <p>Student name: {borrowrecord.student?.name}</p>
+              <p>Student email: {borrowrecord.student?.email}</p>
+              <p>Borrow Date: {borrowrecord.borrowDate}</p>
+              <p>Return Date: {borrowrecord.returnDate}</p> 
+            </li>
+          ))}
+        </ul>
+      </div>)
+  );}
 export default BorrowRecord;

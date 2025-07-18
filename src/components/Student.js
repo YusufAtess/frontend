@@ -3,6 +3,8 @@ import { useEffect,useState } from 'react';
 
 function Student() {
   const [students, setStudents] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [student_id, setStudentId] = useState('');
   const [student, setStudent] = useState(null);
   const [showall,setshowall]= useState(false);
   const [formdata,setformdata]=useState({
@@ -66,6 +68,13 @@ function handleGetByIdSubmit(e) {
     setget_id('');
     setStudent(null); 
 }
+function handleStudentBooks(e) {
+    e.preventDefault();
+    axios.get(`/api/borrowrecord/search_studentbook/${student_id}`)
+      .then(res => setBooks(res.data))
+      .catch(err => console.error(err));
+    setStudentId('0');
+}
   return (
     <div>
       <label>
@@ -87,8 +96,25 @@ function handleGetByIdSubmit(e) {
           email: e.target.value
         }))}}/>
         <button type="submit">Add Student</button>
+        </form>
+       <form onSubmit={handleStudentBooks}>
+        <input type="text" placeholder="Id" name="student_id" value={student_id} onChange={(e)=>{setStudentId(e.target.value)}} />
+        <button type="submit">Get Student's Books</button>
         
-      </form>
+        <div>
+          <ol>
+          {books.map(book => (
+            <li key={book.id}>
+             <p>Book title: {book.title}</p>
+              <p>Book isbn: {book.isbn}</p>
+              <p>Book stock: {book.stock}</p>
+              <p>Book author name: {book.author?.name}</p> 
+              <p>Book author nationality: {book.author?.nationality}</p>
+            </li>
+          ))}
+        </ol>
+          </div>
+        </form>
       <form onSubmit={handleSubmitupdate}>
         <input type="text" placeholder="Id" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
