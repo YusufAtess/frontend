@@ -80,7 +80,9 @@ function handleBookStudents(e) {
     setBookId('0');
 }
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-blue-900 to-pink-800 flex items-center justify-center p-4">
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-md w-full max-w-md">
+
       <label>
       <input
         type="checkbox"
@@ -176,8 +178,9 @@ function handleBookStudents(e) {
       </form>
    
 
-      
+    
     </div>
+  </div>
   );
 }
  function GetAllBooks({books,showall}) {
