@@ -69,61 +69,61 @@ function handleGetByIdSubmit(e) {
     setAuthor(null); 
 }
   return (
-    <div>
-      <label>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+      <label className="flex gap-6 items-center justify-center min-h-screen">
       <input
         type="checkbox"
         value={showall}
         onChange={(e) => setshowall(e.target.checked)}
       />
-      {showall ? 'Hide Authors' : 'Show Authors'}
+      <span className="text-blue-500 hover:text-red-500">{showall ? 'Hide Authors' : 'Show Authors'}</span>
       <GetAllAuthors authors={authors}  showall={showall} />
       </label>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name" name="name" value={formdata.name} onChange={(e)=>{setformdata(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Name" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" value={formdata.name} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           name: e.target.value
         }))}} />
-        <input type="text" placeholder="nationality" name='nationality' value={formdata.nationality} onChange={(e)=>{setformdata(prev=>({
+        <input type="text" placeholder="nationality" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name='nationality' value={formdata.nationality} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           nationality: e.target.value
         }))}}/>
         
-        <button type="submit">Add Author</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Add Author</button>
         
       </form>
-      <form onSubmit={handleSubmitupdate}>
-        <input type="text" placeholder="Id" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmitupdate}>
+        <input type="text" placeholder="Id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           id: e.target.value
         }))}} />
-        <input type="text" placeholder="Name" name="name" value={formdataid.name} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="Name" name="name" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.name} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           name: e.target.value
         }))}} />
-        <input type="text" placeholder="nationality" name='nationality' value={formdataid.nationality} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="nationality" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name='nationality' value={formdataid.nationality} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           nationality: e.target.value
         }))}}/>
-        <button type="submit">Update Author</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Update Author</button>
         
       </form>
-      <form onSubmit={handleSubmitdelete}>
-        <input type="text" placeholder="Id"  name="id" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
-        <button type="submit">Delete Author</button> 
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmitdelete}>
+        <input type="text" placeholder="Id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="id" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Delete Author</button> 
       </form>
-      <form onSubmit={handleGetByIdSubmit}>
-        <input type="text" placeholder="Id" name='id' value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
-        <button type="submit">Get this Author</button>
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleGetByIdSubmit}>
+        <input type="text" placeholder="Id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name='id' value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Get this Author</button>
         
 
         {author&&( 
         <div>
-          <h2>Author Details</h2>
+          <h2 className='text-blue-500'>Author Details</h2>
           
             <div>
-              <p>Name: {author.name}</p>
-              <p>Nationality: {author.nationality}</p>
+              <p className='text-red-500'>Name: {author.name}</p>
+              <p className='text-green-500'>Nationality: {author.nationality}</p>
             </div>
           </div>)}
        
@@ -139,12 +139,12 @@ function handleGetByIdSubmit(e) {
       showall &&(
       <div>
         
-        <h1>Authors</h1>
+        <h1 className='text-blue-500'>Authors</h1>
         <ul>
           {authors.map(author => (
             <li key={author.id}>
-              author name:{author.name},
-              author nationality:{author.nationality},
+             <p className='text-red-500'>Name: {author.name}</p>
+              <p className='text-green-500'>Nationality: {author.nationality}</p>
                
             </li>
           ))}

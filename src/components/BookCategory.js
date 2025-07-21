@@ -69,65 +69,65 @@ function handleGetByIdSubmit(e) {
     setBookCategory(null); 
 }
   return (
-    <div>
-      <label>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+      <label className="flex gap-6 items-center justify-center min-h-screen">
       <input
         type="checkbox"
         value={showall}
         onChange={(e) => setshowall(e.target.checked)}
       />
-      {showall ? 'Hide BookCategorys' : 'Show BookCategorys'}
+      <span className="text-blue-500 hover:text-red-500">{showall ? 'Hide BookCategorys' : 'Show BookCategorys'}</span>
       <GetAllBookCategorys bookcategorys={bookcategorys}  showall={showall} />
       </label>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Book_id" name="book_id" value={formdata.book_id} onChange={(e)=>{setformdata(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Book_id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="book_id" value={formdata.book_id} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           book_id: e.target.value
         }))}} />
-        <input type="text" placeholder="Category_id" name="category_id" value={formdata.category_id} onChange={(e)=>{setformdata(prev=>({
+        <input type="text" placeholder="Category_id" name="category_id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdata.category_id} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           category_id: e.target.value
         }))}}/>
         
-        <button type="submit">Add BookCategory</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Add BookCategory</button>
         
       </form>
-      <form onSubmit={handleSubmitupdate}>
-        <input type="text" placeholder="Id" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmitupdate}>
+        <input type="text" placeholder="Id" name="id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           id: e.target.value
         }))}} />
-        <input type="text" placeholder="Book_id" name="book_id" value={formdataid.book_id} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="Book_id" name="book_id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.book_id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           book_id: e.target.value
         }))}} />
-        <input type="text" placeholder="category_id" name='category_id' value={formdataid.category_id} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="category_id" name='category_id' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.category_id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           category_id: e.target.value
         }))}}/>
-        <button type="submit">Update BookCategory</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Update BookCategory</button>
         
       </form>
-      <form onSubmit={handleSubmitdelete}>
-        <input type="text" placeholder="Id"  name="id" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
-        <button type="submit">Delete BookCategory</button> 
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmitdelete}>
+        <input type="text" placeholder="Id"  name="id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Delete BookCategory</button> 
       </form>
-      <form onSubmit={handleGetByIdSubmit}>
-        <input type="text" placeholder="Id" name='id' value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
-        <button type="submit">Get this BookCategory</button>
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleGetByIdSubmit}>
+        <input type="text" placeholder="Id" name='id' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Get this BookCategory</button>
         
 
         {bookcategory&&( 
         <div>
-          <h2>BookCategory Details</h2>
+          <h2 className='text-blue-500'>BookCategory Details</h2>
           
             <div>
-              <p>Book title: {bookcategory.book?.title}</p>
-              <p>Book isbn: {bookcategory.book?.isbn}</p>
-              <p>Book stock: {bookcategory.book?.stock}</p>   
-              <p>Book author name: {bookcategory.book?.author?.name}</p> 
-              <p>Book author nationality: {bookcategory.book?.author?.nationality}</p>
-              <p>Category name: {bookcategory.category?.name}</p>  
+              <p className='text-red-500'>Book title: {bookcategory.book?.title}</p>
+              <p className='text-green-500'>Book isbn: {bookcategory.book?.isbn}</p>
+              <p className='text-gray-500'>Book stock: {bookcategory.book?.stock}</p>   
+              <p className='text-yellow-500'>Book author name: {bookcategory.book?.author?.name}</p> 
+              <p className='text-purple-500'>Book author nationality: {bookcategory.book?.author?.nationality}</p>
+              <p className='text-pink-500'>Category name: {bookcategory.category?.name}</p>  
             </div>
           </div>)}
        
@@ -147,12 +147,12 @@ function handleGetByIdSubmit(e) {
         <ul>
           {bookcategorys.map(bookcategory => (
             <li key={bookcategory.id}>
-             <p>Book title: {bookcategory.book?.title}</p>
-              <p>Book isbn: {bookcategory.book?.isbn}</p>
-              <p>Book stock: {bookcategory.book?.stock}</p>   
-              <p>Book author name: {bookcategory.book?.author?.name}</p> 
-              <p>Book author nationality: {bookcategory.book?.author?.nationality}</p>
-              <p>Category name: {bookcategory.category?.name}</p> 
+              <p className='text-red-500'>Book title: {bookcategory.book?.title}</p>
+              <p className='text-green-500'>Book isbn: {bookcategory.book?.isbn}</p>
+              <p className='text-gray-500'>Book stock: {bookcategory.book?.stock}</p>   
+              <p className='text-yellow-500'>Book author name: {bookcategory.book?.author?.name}</p> 
+              <p className='text-purple-500'>Book author nationality: {bookcategory.book?.author?.nationality}</p>
+              <p className='text-pink-500'>Category name: {bookcategory.category?.name}</p>  
             </li>
           ))}
         </ul>

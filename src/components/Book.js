@@ -80,47 +80,47 @@ function handleBookStudents(e) {
     setBookId('0');
 }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-blue-900 to-pink-800 flex items-center justify-center p-4">
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-md w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+      
 
-      <label>
+      <label className="flex gap-6 items-center justify-center min-h-screen">
       <input
         type="checkbox"
         value={showall}
         onChange={(e) => setshowall(e.target.checked)}
       />
-      {showall ? 'Hide Books' : 'Show Books'}
+      <span className="text-blue-500 hover:text-red-500">{showall ? 'Hide Books' : 'Show Books'}</span>
       <GetAllBooks books={books}  showall={showall} />
       </label>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Title" name="title" value={formdata.title} onChange={(e)=>{setformdata(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Title" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="title" value={formdata.title} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           title: e.target.value
         }))}} />
-        <input type="text" placeholder="ISBN" name='isbn' value={formdata.isbn} onChange={(e)=>{setformdata(prev=>({
+        <input type="text" placeholder="ISBN" name='isbn' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdata.isbn} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           isbn: e.target.value
         }))}}/>
-        <input type="text" placeholder="Stock" name='stock' value={formdata.stock} onChange={(e)=>{setformdata(prev=>({
+        <input type="text" placeholder="Stock" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name='stock' value={formdata.stock} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           stock: e.target.value
         }))}}/>
-        <input type="text" placeholder="Author_id" name='author_id' value={formdata.author_id} onChange={(e)=>{setformdata(prev=>({
+        <input type="text" placeholder="Author_id" name='author_id' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdata.author_id} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           author_id: e.target.value
         }))}}/>
-        <button type="submit">Add Book</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Add Book</button>
       </form> 
-      <form onSubmit={handleBookStudents}>
-        <input type="text" placeholder="Id" name="book_id" value={book_id} onChange={(e)=>{setBookId(e.target.value)}} />
-        <button type="submit">Get Book's Students</button>
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleBookStudents}>
+        <input type="text" placeholder="Id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="book_id" value={book_id} onChange={(e)=>{setBookId(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Get Book's Students</button>
         
         <div>
           <ol>
           {students.map(student => (
             <li key={student.id}>
-             <p>Student Name: {student.name}</p>
-              <p>Student Email: {student.email}</p>
+             <p className='text-blue-500'>Student Name: {student.name}</p>
+              <p className='text-green-500'>Student Email: {student.email}</p>
               
             </li>
           ))}
@@ -129,49 +129,49 @@ function handleBookStudents(e) {
         </form>
         
       
-      <form onSubmit={handleSubmitupdate}>
-        <input type="text" placeholder="Id" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmitupdate}>
+        <input type="text" placeholder="Id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           id: e.target.value
         }))}} />
-        <input type="text" placeholder="Title" name="title" value={formdataid.title} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="Title" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name="title" value={formdataid.title} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           title: e.target.value
         }))}} />
-        <input type="text" placeholder="ISBN" name='isbn' value={formdataid.isbn} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="ISBN" name='isbn' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.isbn} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           isbn: e.target.value
         }))}}/>
-        <input type="text" placeholder="Stock" name='stock' value={formdataid.stock} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="Stock" name='stock' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.stock} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           stock: e.target.value
         }))}}/>
-        <input type="text" placeholder="Author_id" name='author_id' value={formdataid.author_id} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="Author_id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" name='author_id' value={formdataid.author_id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           author_id: e.target.value
         }))}}/>
-        <button type="submit">Update Book</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Update Book</button>
         
       </form>
-      <form onSubmit={handleSubmitdelete}>
-        <input type="text" placeholder="Id"  value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
-        <button type="submit">Delete Book</button> 
+      <form className="flex items-center justify-center min-h-screen"  onSubmit={handleSubmitdelete}>
+        <input type="text" placeholder="Id"  className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Delete Book</button> 
       </form>
-      <form onSubmit={handleGetByIdSubmit}>
-        <input type="text" placeholder="Id"  value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
-        <button type="submit">Get this Book</button>
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleGetByIdSubmit}>
+        <input type="text" placeholder="Id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"  value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Get this Book</button>
         
 
         {book&&( 
         <div>
-          <h2>Book Details</h2>
+          <h2 className='text-blue-500'>Book Details</h2>
           
             <div>
-              <p>Title: {book.title}</p>
-              <p>ISBN: {book.isbn}</p>
-              <p>Stock: {book.stock}</p>
-              <p>Author name : {book.author?.name}</p>
-              <p>Author nationality: {book.author?.nationality}</p>
+              <p className='text-red-500'>Title: {book.title}</p>
+              <p className='text-green-500'>ISBN: {book.isbn}</p>
+              <p className='text-gray-500'>Stock: {book.stock}</p>
+              <p className='text-purple-500'>Author name : {book.author?.name}</p>
+              <p className='text-yellow-500'>Author nationality: {book.author?.nationality}</p>
             </div>
           </div>)}
        
@@ -180,7 +180,7 @@ function handleBookStudents(e) {
 
     
     </div>
-  </div>
+  
   );
 }
  function GetAllBooks({books,showall}) {
@@ -192,11 +192,11 @@ function handleBookStudents(e) {
         <ul>
           {books.map(book => (
             <li key={book.id}>
-              book title:{book.title},
-              book stock_number:{book.stock},
-              book isbn:{book.isbn}  
-              book author_name:{book.author?.name},
-              book author_nationality:{book.author?.nationality},
+              <p className='text-red-500'>Title: {book.title}</p>
+              <p className='text-green-500'>ISBN: {book.isbn}</p>
+              <p className='text-gray-500'>Stock: {book.stock}</p>
+              <p className='text-purple-500'>Author name : {book.author?.name}</p>
+              <p className='text-yellow-500'>Author nationality: {book.author?.nationality}</p>
             </li>
           ))}
         </ul>

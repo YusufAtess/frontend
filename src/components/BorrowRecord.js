@@ -91,59 +91,59 @@ function handleMostBorrowedBooks(e) {
 }
 
   return (
-    <div>
-      <label>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+      <label className="flex gap-6 items-center justify-center min-h-screen">
       <input
         type="checkbox"
         value={showall}
         onChange={(e) => setshowall(e.target.checked)}
       />
-      {showall ? 'Hide BorrowRecords' : 'Show BorrowRecords'}
+      <span className="text-blue-500 hover:text-red-500">{showall ? 'Hide BorrowRecords' : 'Show BorrowRecords'}</span>
       <GetAllBorrowRecords borrowrecords={borrowrecords}  showall={showall} />
       </label>
-       <label>
+       <label className="flex gap-6 items-center justify-center min-h-screen">
       <input
         type="checkbox"
         value={showoverdue}
         onChange={(e) => handleGetOverdueBorrowRecords(e)}
       />
-      {showoverdue ? 'Hide  overdue BorrowRecords' : 'Show  overdue BorrowRecords'}
+      <span className="text-blue-500 hover:text-red-500">{showoverdue ? 'Hide  overdue BorrowRecords' : 'Show  overdue BorrowRecords'}</span>
       <GetOverDueBorrowRecords overdueborrowrecords={overdueborrowrecords}  showoverdue={showoverdue} />
       </label>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Book_id" name="book_id" value={formdata.book_id} onChange={(e)=>{setformdata(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Book_id" name="book_id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdata.book_id} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           book_id: e.target.value
         }))}} />
-        <input type="text" placeholder="Student_id" name="student_id" value={formdata.student_id} onChange={(e)=>{setformdata(prev=>({
+        <input type="text" placeholder="Student_id" name="student_id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdata.student_id} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           student_id: e.target.value
         }))}}/>
-        <input type="date" placeholder="BorrowDate" name="borrowDate" value={formdata.borrowDate} onChange={(e)=>{setformdata(prev=>({
+        <input type="date" placeholder="BorrowDate" name="borrowDate" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdata.borrowDate} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           borrowDate: e.target.value
         }))}} />
-        <input type="date" placeholder="ReturnDate" name="returnDate" value={formdata.returnDate} onChange={(e)=>{setformdata(prev=>({
+        <input type="date" placeholder="ReturnDate" name="returnDate" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdata.returnDate} onChange={(e)=>{setformdata(prev=>({
           ...prev,
           returnDate: e.target.value
         }))}} />
-        <button type="submit">Add BorrowRecord</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Add BorrowRecord</button>
        </form> 
         
-      <form onSubmit={handleMostBorrowedBooks}>
-        <input type="number" placeholder="number"  value={numOfMostBorrowedBooks} onChange={(e)=>{setNumOfMostBorrowedBooks(e.target.value)}} />
-      <button type="submit">Get Most Borrowed Books</button>
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleMostBorrowedBooks}>
+        <input type="number" placeholder="number"  className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={numOfMostBorrowedBooks} onChange={(e)=>{setNumOfMostBorrowedBooks(e.target.value)}} />
+      <button className="text-blue-500 hover:text-red-500" type="submit">Get Most Borrowed Books</button>
         
         <div>
           <ol>
           {mostborrowedbooks.map(borrowedbook => (
             <li key={borrowedbook.id}>
-             <p>Book title: {borrowedbook.title}</p>
-              <p>Book isbn: {borrowedbook.isbn}</p>
-              <p>Book stock: {borrowedbook.stock}</p>
-              <p>Book number of borrowed: {borrowedbook.num}</p>   
-              <p>Book author name: {borrowedbook.author?.name}</p> 
-              <p>Book author nationality: {borrowedbook.author?.nationality}</p>
+             <p className='text-blue-500'>Book title: {borrowedbook.title}</p>
+              <p className='text-red-500'>Book isbn: {borrowedbook.isbn}</p>
+              <p className='text-green-500'>Book stock: {borrowedbook.stock}</p>
+              <p className='text-yellow-500'>Book number of borrowed: {borrowedbook.num}</p>   
+              <p className='text-gray-500'>Book author name: {borrowedbook.author?.name}</p> 
+              <p className='text-purple-500'>Book author nationality: {borrowedbook.author?.nationality}</p>
             </li>
           ))}
         </ol>
@@ -151,37 +151,37 @@ function handleMostBorrowedBooks(e) {
       </form>
         
       
-      <form onSubmit={handleSubmitupdate}>
-        <input type="text" placeholder="Id" name="id" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmitupdate}>
+        <input type="text" placeholder="Id" name="id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           id: e.target.value
         }))}} />
-        <input type="text" placeholder="Book_id" name="book_id" value={formdataid.book_id} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="Book_id" name="book_id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.book_id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           book_id: e.target.value
         }))}} />
-        <input type="text" placeholder="student_id" name='student_id' value={formdataid.student_id} onChange={(e)=>{setformdataid(prev=>({
+        <input type="text" placeholder="student_id" name='student_id' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.student_id} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           student_id: e.target.value
         }))}}/>
-           <input type="date" placeholder="BorrowDate" name="borrowDate" value={formdataid.borrowDate} onChange={(e)=>{setformdataid(prev=>({
+           <input type="date" placeholder="BorrowDate" name="borrowDate" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.borrowDate} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           borrowDate: e.target.value
         }))}} />
-        <input type="date" placeholder="ReturnDate" name="returnDate" value={formdataid.returnDate} onChange={(e)=>{setformdataid(prev=>({
+        <input type="date" placeholder="ReturnDate" name="returnDate" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={formdataid.returnDate} onChange={(e)=>{setformdataid(prev=>({
           ...prev,
           returnDate: e.target.value
         }))}} />
-        <button type="submit">Update BorrowRecord</button>
+        <button className="text-blue-500 hover:text-red-500" type="submit">Update BorrowRecord</button>
         
       </form>
-      <form onSubmit={handleSubmitdelete}>
-        <input type="text" placeholder="Id"  name="id" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
-        <button type="submit">Delete BorrowRecord</button> 
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleSubmitdelete}>
+        <input type="text" placeholder="Id"  name="id" className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={del_id} onChange={(e)=>{setdel_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Delete BorrowRecord</button> 
       </form>
-      <form onSubmit={handleGetByIdSubmit}>
-        <input type="text" placeholder="Id" name='id' value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
-        <button type="submit">Get this BorrowRecord</button>
+      <form className="flex items-center justify-center min-h-screen" onSubmit={handleGetByIdSubmit}>
+        <input type="text" placeholder="Id" name='id' className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" value={get_id} onChange={(e)=>{setget_id(e.target.value)}} />
+        <button className="text-blue-500 hover:text-red-500" type="submit">Get this BorrowRecord</button>
         
 
         {borrowrecord&&( 
@@ -189,15 +189,15 @@ function handleMostBorrowedBooks(e) {
           <h2>BorrowRecord Details</h2>
           
             <div>
-              <p>Book title: {borrowrecord.book?.title}</p>
-              <p>Book isbn: {borrowrecord.book?.isbn}</p>
-              <p>Book stock: {borrowrecord.book?.stock}</p>   
-              <p>Book author name: {borrowrecord.book?.author?.name}</p> 
-              <p>Book author nationality: {borrowrecord.book?.author?.nationality}</p>
-              <p>Student name: {borrowrecord.student?.name}</p>
-              <p>Student email: {borrowrecord.student?.email}</p>
-              <p>Borrow Date: {borrowrecord.borrowDate}</p>
-              <p>Return Date: {borrowrecord.returnDate}</p>  
+              <p className='text-blue-500'>Book title: {borrowrecord.book?.title}</p>
+              <p className='text-red-500'>Book isbn: {borrowrecord.book?.isbn}</p>
+              <p className='text-yellow-500'>Book stock: {borrowrecord.book?.stock}</p>   
+              <p className='text-green-500'>Book author name: {borrowrecord.book?.author?.name}</p> 
+              <p className='text-gray-500'>Book author nationality: {borrowrecord.book?.author?.nationality}</p>
+              <p className='text-purple-500'>Student name: {borrowrecord.student?.name}</p>
+              <p className='text-pink-500'>Student email: {borrowrecord.student?.email}</p>
+              <p className='text-blue-300'>Borrow Date: {borrowrecord.borrowDate}</p>
+              <p className='text-blue-900'>Return Date: {borrowrecord.returnDate}</p>  
             </div>
           </div>)}
        
@@ -213,19 +213,19 @@ function handleMostBorrowedBooks(e) {
       showall &&(
       <div>
         
-        <h1>BorrowRecords</h1>
+        <h1 >BorrowRecords</h1>
         <ul>
           {borrowrecords.map(borrowrecord => (
             <li key={borrowrecord.id}>
-             <p>Book title: {borrowrecord.book?.title}</p>
-              <p>Book isbn: {borrowrecord.book?.isbn}</p>
-              <p>Book stock: {borrowrecord.book?.stock}</p>   
-              <p>Book author name: {borrowrecord.book?.author?.name}</p> 
-              <p>Book author nationality: {borrowrecord.book?.author?.nationality}</p>
-              <p>Student name: {borrowrecord.student?.name}</p>
-              <p>Student email: {borrowrecord.student?.email}</p>
-              <p>Borrow Date: {borrowrecord.borrowDate}</p>
-              <p>Return Date: {borrowrecord.returnDate}</p> 
+              <p className='text-blue-500'>Book title: {borrowrecord.book?.title}</p>
+              <p className='text-red-500'>Book isbn: {borrowrecord.book?.isbn}</p>
+              <p className='text-yellow-500'>Book stock: {borrowrecord.book?.stock}</p>   
+              <p className='text-green-500'>Book author name: {borrowrecord.book?.author?.name}</p> 
+              <p className='text-gray-500'>Book author nationality: {borrowrecord.book?.author?.nationality}</p>
+              <p className='text-purple-500'>Student name: {borrowrecord.student?.name}</p>
+              <p className='text-pink-500'>Student email: {borrowrecord.student?.email}</p>
+              <p className='text-blue-300'>Borrow Date: {borrowrecord.borrowDate}</p>
+              <p className='text-blue-900'>Return Date: {borrowrecord.returnDate}</p>  
             </li>
           ))}
         </ul>
@@ -241,15 +241,15 @@ function GetOverDueBorrowRecords({overdueborrowrecords,showoverdue}) {
         <ul>
           {overdueborrowrecords.map(borrowrecord => (
             <li key={borrowrecord.id}>
-             <p>Book title: {borrowrecord.book?.title}</p>
-              <p>Book isbn: {borrowrecord.book?.isbn}</p>
-              <p>Book stock: {borrowrecord.book?.stock}</p>   
-              <p>Book author name: {borrowrecord.book?.author?.name}</p> 
-              <p>Book author nationality: {borrowrecord.book?.author?.nationality}</p>
-              <p>Student name: {borrowrecord.student?.name}</p>
-              <p>Student email: {borrowrecord.student?.email}</p>
-              <p>Borrow Date: {borrowrecord.borrowDate}</p>
-              <p>Return Date: {borrowrecord.returnDate}</p> 
+              <p className='text-blue-500'>Book title: {borrowrecord.book?.title}</p>
+              <p className='text-red-500'>Book isbn: {borrowrecord.book?.isbn}</p>
+              <p className='text-yellow-500'>Book stock: {borrowrecord.book?.stock}</p>   
+              <p className='text-green-500'>Book author name: {borrowrecord.book?.author?.name}</p> 
+              <p className='text-gray-500'>Book author nationality: {borrowrecord.book?.author?.nationality}</p>
+              <p className='text-purple-500'>Student name: {borrowrecord.student?.name}</p>
+              <p className='text-pink-500'>Student email: {borrowrecord.student?.email}</p>
+              <p className='text-blue-300'>Borrow Date: {borrowrecord.borrowDate}</p>
+              <p className='text-blue-900'>Return Date: {borrowrecord.returnDate}</p>  
             </li>
           ))}
         </ul>
