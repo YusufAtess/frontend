@@ -102,7 +102,7 @@ function handleStudentBooks(e) {
         <button className="text-blue-500 hover:text-red-500" type="submit">Get Student's Books</button>
         
         <div>
-          <ol>
+          <ol className='space-y-4'>
           {books.map(book => (
             <li key={book.id}>
              <p className="text-blue-500">Book title: {book.title}</p>
@@ -110,6 +110,10 @@ function handleStudentBooks(e) {
               <p className="text-green-500">Book stock: {book.stock}</p>
               <p className="text-gray-500">Book author name: {book.author?.name}</p> 
               <p className="text-yellow-500">Book author nationality: {book.author?.nationality}</p>
+              <img src={book?.thumbnail} alt={book.title} className="w-32 h-32 object-cover rounded-lg" />
+              <p className='text-blue-300'>Publisher: {book?.publisher}</p>
+              <p className='text-red-300'>Average Rating: {book?.averageRating}</p>
+              <p className='text-green-300'>Number of Ratings: {book?.ratingsCount}</p>
             </li>
           ))}
         </ol>

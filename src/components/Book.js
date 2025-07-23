@@ -172,6 +172,10 @@ function handleBookStudents(e) {
               <p className='text-gray-500'>Stock: {book.stock}</p>
               <p className='text-purple-500'>Author name : {book.author?.name}</p>
               <p className='text-yellow-500'>Author nationality: {book.author?.nationality}</p>
+              <img src={book?.thumbnail} alt={book.title} className="w-32 h-32 object-cover rounded-lg" />
+              <p className='text-blue-300'>Publisher: {book?.publisher}</p>
+              <p className='text-red-300'>Average Rating: {book?.averageRating}</p>
+              <p className='text-green-300'>Number of Ratings: {book?.ratingsCount}</p>
             </div>
           </div>)}
        
@@ -189,7 +193,7 @@ function handleBookStudents(e) {
       <div>
         
         <h1>Books</h1>
-        <ul>
+        <ol className='space-y-4'>
           {books.map(book => (
             <li key={book.id}>
               <p className='text-red-500'>Title: {book.title}</p>
@@ -197,9 +201,14 @@ function handleBookStudents(e) {
               <p className='text-gray-500'>Stock: {book.stock}</p>
               <p className='text-purple-500'>Author name : {book.author?.name}</p>
               <p className='text-yellow-500'>Author nationality: {book.author?.nationality}</p>
+              <img src={book?.thumbnail} alt={book.title} className="w-32 h-32 object-cover rounded-lg" />
+              <p className='text-blue-300'>Publisher: {book?.publisher}</p>
+              {(book?.averageRating &&
+              <p className='text-red-300'>Average Rating: {book?.averageRating}</p>)}
+              {(book?.ratingsCount&&<p className='text-green-300'>Number of Ratings: {book?.ratingsCount}</p>)}
             </li>
           ))}
-        </ul>
+        </ol>
       </div>)
   );
 }
